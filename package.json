@@ -2,26 +2,40 @@
   "name": "tp3",
   "version": "1.0.0",
   "description": "grupo0",
+  "homepage": "https://github.com/JulianScipioni06/tp4-G14-Progra-III#readme",
+  "bugs": {
+    "url": "https://github.com/JulianScipioni06/tp4-G14-Progra-III/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JulianScipioni06/tp4-G14-Progra-III.git"
+  },
+  "license": "MIT",
+  "author": "Grupo 14",
+  "type": "commonjs",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\"",
+    "dev": "nodemon --exec ts-node app.js",
+    "start": "ts-node app.js",
     "lint": "npx standard",
     "fix": "npx standard --fix",
     "prepare": "husky"
   },
-  "author": "",
-  "license": "MIT",
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1"
   },
   "devDependencies": {
-    "eslint": "^10.3.0",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.9.1",
+    "eslint": "^10.4.0",
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
     "nodemon": "^3.1.14",
-    "standard": "^17.1.2"
+    "standard": "^17.1.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
   }
 }
