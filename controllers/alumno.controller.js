@@ -107,4 +107,55 @@ const postAlumno = async (req, res) => {
   }
 };
 
-module.exports = { getAlumnoAll, getAlumnoById, postAlumno };
+// editamos un alumno
+const putAlumno = async (req, res) => {
+  try {
+    const data = await fs.readFile("./data/alumnos.json","utf-8");
+    const alumnos = JSON.parse(data);
+
+    const legajoParam = Number(req.params.legajo);
+    const datosActualizar = req.body;
+    // error 400
+    if(!datosActualizar.nombre || !datosActualizar.apellido || !datosActualizar.email){
+      return res.status(400).json({
+        msg:"Error: Faltan datos obligatorios para ser actualizados (nombre, apellido, email)."
+      })
+    }
+
+    const alumnoIndex = alumnos.findIndex (
+      (a) => Number(a.legajo) === legajoParam
+    );
+    // error 404
+    if (alumnoIndex === -1){
+      return res.status(404).json({
+        msg: `Error: No se encontró ningún alumno con el legajo ${legajoParam}`
+      });
+    }
+
+    const alumnoExistente = alumnos[alumnoIndex];
+    alumnos[alumnoIndex] = {
+      ...alumnoExistente, //esto mantiene los datos originales como base
+      nombre: datosActualizar.nombre !== undefined ? datosActualizar.nombre : alumnoExistente.nombre,
+      apellido: datosActualizar.apellido !== undefined ? datosActualizar.apellido : alumnoExistente.apellido,
+      email: datosActualizar.email !== undefined ? datosActualizar.email : alumnoExistente.email,
+      isActive: datosActualizar.isActive !== undefined ? datosActualizar.isActive : alumnoExistente.isActive,
+      modificacion: new Date().toISOString().split('T')[0]
+    };
+    await fs.writeFile(
+      "./data/alumnos.json", JSON.stringify(alumnos, null, 2), "utf-8"
+    );
+    // respuesta 200
+    return res.status(200).json({
+      msg: "El alumno ha sido modificado con éxito",
+      alumno: alumnos[alumnoIndex],
+    })
+  } catch (error){
+    // error 500
+    return res.status(500).json({
+      error: "No se ha podido modificar al alumno",
+      detalleExacto: error.message,
+    });
+  }
+}
+
+module.exports = { getAlumnoAll, getAlumnoById, postAlumno, putAlumno, };
