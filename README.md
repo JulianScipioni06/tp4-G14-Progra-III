@@ -16,7 +16,6 @@
 > **Links del Proyecto**
 > * **API en Render:** https://tp4-g14-progra-iii.onrender.com
 > * **Documentacion en Postman:** https://documenter.getpostman.com/view/50291970/2sBXwnuYS3
-> * **Repositorio del Front-end:** 
 
 ---
 
