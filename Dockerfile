@@ -1,8 +1,8 @@
 # imagen de Node.js 
-FROM node:18-alpine
+FROM node:20-alpine
 
 # Directorio de trabajo dentro del contenedor
-WORKDIR /app
+WORKDIR /usr/src/app
 
 # Copiamos los archivos de dependencias 
 COPY package*.json ./
@@ -14,7 +14,8 @@ RUN npm install
 COPY . .
 
 # Puerto que usa nuestra API 
-EXPOSE 3000
+ENV PORT=3000
+EXPOSE PORT
 
 # Comando para arrancar el servidor
-CMD ["npm", "start"]
+CMD ["npm", "run", "start"]
