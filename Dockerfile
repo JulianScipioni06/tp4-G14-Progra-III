@@ -14,8 +14,7 @@ RUN npm install
 COPY . .
 
 # Puerto que usa nuestra API 
-ENV PORT=3000
-EXPOSE PORT
+EXPOSE 3000
 
 # Comando para arrancar el servidor
 CMD ["npm", "run", "start"]
