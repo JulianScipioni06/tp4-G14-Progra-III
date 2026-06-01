@@ -116,10 +116,10 @@ const putAlumno = async (req, res) => {
     const legajoParam = Number(req.params.legajo);
     const datosActualizar = req.body;
     // error 400
-    if(!datosActualizar.nombre || !datosActualizar.apellido || !datosActualizar.email){
+    if (datosActualizar.legajo && Number(datosActualizar.legajo) !== legajoParam) {
       return res.status(400).json({
-        msg:"Error: Faltan datos obligatorios para ser actualizados (nombre, apellido, email)."
-      })
+        msg: "Error Crítico: El número de legajo es inmutable y no se puede modificar."
+      });
     }
 
     const alumnoIndex = alumnos.findIndex (
