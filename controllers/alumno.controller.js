@@ -48,6 +48,14 @@ const postAlumno = async (req, res) => {
     const alumnos = JSON.parse(data);
 
     const nuevoAlumno = req.body;
+
+    let nuevoLegajo = 10000; // Valor base por si el JSON llega a estar vacío
+    if (alumnos.length > 0) {
+      //buscamos el legajo más alto y le sumamos 1
+      const maxLegajo = Math.max(...alumnos.map(a => Number(a.legajo)));
+      nuevoLegajo = maxLegajo + 1;
+    }
+
     //Error 409 (Duplicados)
     const validarLegajo = alumnos.some(
       (alumnos) => alumnos.legajo.toString() === nuevoAlumno.legajo.toString(),
@@ -58,6 +66,7 @@ const postAlumno = async (req, res) => {
         msg: `Error: Ya existe un alumno con el legajo ${nuevoAlumno.legajo}`,
       });
     }
+    
     //Error 400
     const {
       legajo,

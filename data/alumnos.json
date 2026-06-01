@@ -205,14 +205,5 @@
     "fechaAlta": "2026-05-14",
     "modificacion": "2026-05-14",
     "isActive": true
-  },
-  {
-    "nombre": "Julián",
-    "apellido": "Scipioni",
-    "email": "julian.scipioni@ejemplo.com",
-    "legajo": 88888,
-    "fechaAlta": "2026-05-31",
-    "modificacion": "2026-05-31",
-    "isActive": true
   }
 ]
